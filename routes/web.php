@@ -19,7 +19,7 @@ Route::get("/hola", function () {
 
 Route::get('/subjects', function () {
     return view('subjects.index');
-});
+})->name('subjects.index');
 
 Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
