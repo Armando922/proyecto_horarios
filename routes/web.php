@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\TimeSlotController;
@@ -13,13 +14,13 @@ Route::get('/', function () {
 Route::get('/home_layout', function () {
     return view('layout');
 });
-Route::get("/hola", function () {
+Route::get("/hola",function(){
     return "Hola mundo";
 });
 
 Route::get('/subjects', function () {
     return view('subjects.index');
-});
+})->name('subjects.index');
 
 Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
@@ -28,6 +29,12 @@ Route::resource('time-slots', TimeSlotController::class);
 
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/home', function () {
+        return redirect()->route('dashboard');
+    });
+
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/perfil/editar', [ProfileController::class, 'edit'])->name('profile.edit');
 });
