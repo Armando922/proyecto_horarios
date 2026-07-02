@@ -14,7 +14,7 @@ class UpdateSpecialtyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:255', 'unique:specialties,nombre,' . $this->route('specialty')->id],
+            'nombre' => ['required', 'string', 'max:255', 'unique:specialties,nombre,'.$this->route('specialty')->id],
         ];
     }
 }

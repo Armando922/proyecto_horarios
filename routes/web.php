@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SavedScheduleController;
+use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
@@ -16,10 +19,10 @@ Route::get('/', function () {
 Route::get('/home_layout', function () {
     return view('layout');
 });
-
 Route::get('/hola', function () {
-    return "Hola mundo";
+    return 'Hola mundo';
 });
+
 
 Route::resource('subjects', SubjectController::class);
 Route::resource('available-classes', AvailableClassController::class);
@@ -27,6 +30,11 @@ Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
 
+Route::get('/horario', [ScheduleController::class, 'index'])->name('schedule.grid');
+Route::get('/horario/imprimir', [ScheduleController::class, 'print'])->name('schedule.print');
+
+Route::resource('saved-schedules', SavedScheduleController::class)->except(['edit', 'update']);
+Route::get('/saved-schedules/{savedSchedule}/imprimir', [SavedScheduleController::class, 'print'])->name('saved-schedules.print');
 // Ruta del módulo de Auditoría
 Route::resource('audits', AuditController::class)->only(['index']);
 

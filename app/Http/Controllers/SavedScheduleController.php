@@ -80,9 +80,9 @@ class SavedScheduleController extends Controller
             ->with('success', 'Horario eliminado correctamente.');
     }
 
- // guarda una sola clase (no un arreglo), porque es el horario
+    // guarda una sola clase (no un arreglo), porque es el horario
     // personal de un usuario y no debería tener choques.
-    
+
     protected function buildGrid($availableClasses): array
     {
         $grid = [];
