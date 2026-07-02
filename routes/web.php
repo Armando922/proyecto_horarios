@@ -5,16 +5,19 @@ use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeSlotController;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AuditController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
 Route::get('/home_layout', function () {
     return view('layout');
 });
-Route::get("/hola", function () {
+
+Route::get('/hola', function () {
     return "Hola mundo";
 });
 
@@ -24,6 +27,8 @@ Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
 
+// Ruta del módulo de Auditoría
+Route::resource('audits', AuditController::class)->only(['index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
