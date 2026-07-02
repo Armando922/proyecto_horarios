@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\GroupController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\TimeSlotController;
@@ -13,7 +14,7 @@ Route::get('/', function () {
 Route::get('/home_layout', function () {
     return view('layout');
 });
-Route::get("/hola", function () {
+Route::get("/hola",function(){
     return "Hola mundo";
 });
 
@@ -25,6 +26,7 @@ Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
+Route::resource('groups', GroupController::class);
 
 
 Route::middleware(['auth'])->group(function () {

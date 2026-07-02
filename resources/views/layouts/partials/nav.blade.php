@@ -19,6 +19,12 @@
             </a>
         </li>
         <li>
+            <a href="{{ url('/groups') }}"
+               class="block px-3 py-1.5 rounded-lg transition {{ request()->is('groups*') ? 'bg-white/15 font-semibold' : 'hover:bg-white/10' }}">
+                Grupos
+            </a>
+        </li>
+        <li>
             <a href="{{ url('/perfil') }}"
                class="block px-3 py-1.5 rounded-lg transition {{ request()->is('perfil') ? 'bg-white/15 font-semibold' : 'hover:bg-white/10' }}">
                 Perfil
