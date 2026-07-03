@@ -8,7 +8,7 @@
             <h3 class="font-display font-semibold text-slate-800 mb-2">Enlaces</h3>
             <ul class="space-y-1">
                 <li><a href="{{ url('/') }}" class="hover:text-blue-700">Escritorio</a></li>
-                <li><a href="{{ url('/horarios') }}" class="hover:text-blue-700">Mis Horarios</a></li>
+                <li><a href="{{ route('saved-schedules.index') }}" class="hover:text-blue-700">Mis Horarios</a></li>
             </ul>
         </div>
         <div>
