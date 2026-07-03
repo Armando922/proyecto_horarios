@@ -4,6 +4,9 @@ use App\Http\Controllers\ClassroomController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassroomController;
+use App\Http\Controllers\ScheduleExportController;
+
 use App\Http\Controllers\SubjectPrerequisiteController;
 
 Route::get('/user', function (Request $request) {
@@ -13,6 +16,18 @@ Route::apiResource('users', UserController::class);
 Route::apiResource('classrooms', ClassroomController::class);
 
 
+Route::get(
+    '/saved-schedules/{schedule}/export/pdf',
+    [ScheduleExportController::class, 'pdf']
+);
+Route::get(
+    '/saved-schedules/{schedule}/export/excel',
+    [ScheduleExportController::class, 'excel']
+);
+Route::get(
+    '/saved-schedules/{schedule}/export/excel',
+    [ScheduleExportController::class, 'excel']
+);
 
 Route::get(
     'subjects/{subject}/prerequisites',
