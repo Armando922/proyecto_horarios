@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\ClassroomWebController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
@@ -10,18 +12,10 @@ use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeSlotController;
-use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/home_layout', function () {
-    return view('layout');
-});
-Route::get("/hola",function(){
-    return "Hola mundo";
 });
 
 Route::get('/subjects', function () {
@@ -34,6 +28,10 @@ Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
 Route::resource('groups', GroupController::class);
+
+Route::get('/classrooms', [ClassroomWebController::class, 'index'])->name('classrooms.index');
+Route::get('/classrooms/create', [ClassroomWebController::class, 'create'])->name('classrooms.create');
+Route::post('/classrooms', [ClassroomWebController::class, 'store'])->name('classrooms.store');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->name('schedule.grid');
 Route::get('/horario/imprimir', [ScheduleController::class, 'print'])->name('schedule.print');
