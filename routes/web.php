@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
-use App\Http\Controllers\ClassroomWebController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
@@ -18,12 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-
-Route::get('/subjects', function () {
-    return view('subjects.index');
-})->name('subjects.index');
-
+// Resuelto: Se eliminó el closure duplicado y se usa el resource
 Route::resource('subjects', SubjectController::class);
 Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
@@ -31,16 +25,12 @@ Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
 Route::resource('groups', GroupController::class);
 
-Route::get('/classrooms', [ClassroomWebController::class, 'index'])->name('classrooms.index');
-Route::get('/classrooms/create', [ClassroomWebController::class, 'create'])->name('classrooms.create');
-Route::post('/classrooms', [ClassroomWebController::class, 'store'])->name('classrooms.store');
-
 Route::get('/horario', [ScheduleController::class, 'index'])->name('schedule.grid');
 Route::get('/horario/imprimir', [ScheduleController::class, 'print'])->name('schedule.print');
 
 Route::resource('saved-schedules', SavedScheduleController::class)->except(['edit', 'update']);
 Route::get('/saved-schedules/{savedSchedule}/imprimir', [SavedScheduleController::class, 'print'])->name('saved-schedules.print');
-// Ruta del módulo de Auditoría
+
 Route::resource('audits', AuditController::class)->only(['index']);
 
 Route::middleware(['auth'])->group(function () {
