@@ -10,49 +10,81 @@
         <div class="rounded-2xl bg-blue-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['specialties'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Especialidades</p>
-            <a href="{{ route('specialties.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('specialties.index'))
+                <a href="{{ route('specialties.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-amber-500 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['semesters'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Semestres</p>
-            <a href="{{ route('semesters.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('semesters.index'))
+                <a href="{{ route('semesters.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-emerald-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['teachers'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Docentes</p>
-            <a href="{{ route('teachers.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('teachers.index'))
+                <a href="{{ route('teachers.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-purple-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['subjects'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Materias</p>
-            <a href="{{ route('subjects.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('subjects.index'))
+                <a href="{{ route('subjects.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-rose-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['classrooms'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Aulas</p>
-            <a href="{{ route('classrooms.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('classrooms.index'))
+                <a href="{{ route('classrooms.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-cyan-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['time_slots'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Bloques horarios</p>
-            <a href="{{ route('time-slots.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('time-slots.index'))
+                <a href="{{ route('time-slots.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-orange-600 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['groups'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Grupos</p>
-            <a href="{{ route('groups.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('groups.index'))
+                <a href="{{ route('groups.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
 
         <div class="rounded-2xl bg-red-700 text-white p-5 shadow-lg">
             <span class="text-3xl font-bold">{{ $counters['available_classes'] }}</span>
             <p class="mt-2 text-sm font-medium text-white/90">Clases programadas</p>
-            <a href="{{ route('available-classes.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @if (Route::has('available-classes.index'))
+                <a href="{{ route('available-classes.index') }}" class="mt-3 inline-block text-xs font-semibold text-white/80 hover:text-white">Ver detalles →</a>
+            @else
+                <span class="mt-3 inline-block text-xs font-semibold text-white/50">Próximamente</span>
+            @endif
         </div>
     </div>
 

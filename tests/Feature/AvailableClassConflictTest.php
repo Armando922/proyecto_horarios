@@ -7,10 +7,12 @@ use App\Models\Semester;
 use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlot;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 uses(
-    Tests\TestCase::class,
-    Illuminate\Foundation\Testing\RefreshDatabase::class,
+    TestCase::class,
+    RefreshDatabase::class,
 );
 
 beforeEach(function () {
