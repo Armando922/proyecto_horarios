@@ -52,4 +52,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/perfil/editar', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('/perfil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::put('/perfil/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 });

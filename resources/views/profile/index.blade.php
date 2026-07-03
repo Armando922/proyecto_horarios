@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="max-w-3xl mx-auto py-12 px-4 sm:px-6">
-    
+
     <div class="relative bg-white rounded-4xl shadow-2xl shadow-indigo-100 border border-gray-100 overflow-hidden">
         
         <div class="h-32 bg-linear-to-r from-olive-950 to-red-600"></div>
@@ -29,9 +29,9 @@
 
                 <div class="bg-gray-50 p-4 rounded-2xl border border-gray-100">
                     <label class="block text-[10px] uppercase font-bold text-gray-400 tracking-widest">Rol del Sistema</label>
-                    @if(auth()->user()->role)
+                    @if(auth()->user()->rol)
                         <span class="inline-block px-3 py-1 bg-indigo-100 text-indigo-700 text-sm font-bold rounded-lg mt-1">
-                            {{ auth()->user()->role }}
+                            {{ auth()->user()->rol }}
                         </span>
                     @else
                         <span class="inline-block px-3 py-1 bg-gray-200 text-gray-600 text-sm font-bold rounded-lg mt-1 italic">
@@ -47,10 +47,10 @@
             </div>
 
             <div class="mt-10 flex flex-wrap gap-4">
-                <a href="#" class="flex-1 text-center bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-2xl font-bold transition-all transform hover:scale-[1.02] shadow-lg shadow-gray-300">
+                <a href="{{ route('profile.edit') }}" class="flex-1 text-center bg-gray-900 hover:bg-gray-800 text-white py-4 rounded-2xl font-bold transition-all transform hover:scale-[1.02] shadow-lg shadow-gray-300">
                     Editar Perfil
                 </a>
-                <a href="#" class="flex-1 text-center bg-white border-2 border-gray-100 hover:border-indigo-200 hover:bg-indigo-100 text-gray-700 py-4 rounded-2xl font-bold transition-all transform hover:scale-[1.02]">
+                <a href="{{ route('profile.edit') }}#password" class="flex-1 text-center bg-white border-2 border-gray-100 hover:border-indigo-200 hover:bg-indigo-100 text-gray-700 py-4 rounded-2xl font-bold transition-all transform hover:scale-[1.02]">
                     Cambiar Contraseña
                 </a>
             </div>
