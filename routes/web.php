@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\ClassroomWebController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
@@ -17,12 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/home_layout', function () {
-    return view('layout');
-});
-Route::get("/hola",function(){
-    return "Hola mundo";
-});
+
 
 Route::get('/subjects', function () {
     return view('subjects.index');
@@ -34,6 +30,10 @@ Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
 Route::resource('time-slots', TimeSlotController::class);
 Route::resource('groups', GroupController::class);
+
+Route::get('/classrooms', [ClassroomWebController::class, 'index'])->name('classrooms.index');
+Route::get('/classrooms/create', [ClassroomWebController::class, 'create'])->name('classrooms.create');
+Route::post('/classrooms', [ClassroomWebController::class, 'store'])->name('classrooms.store');
 
 Route::get('/horario', [ScheduleController::class, 'index'])->name('schedule.grid');
 Route::get('/horario/imprimir', [ScheduleController::class, 'print'])->name('schedule.print');
