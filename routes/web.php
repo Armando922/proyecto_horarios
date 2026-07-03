@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AvailableClassController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SavedScheduleController;
@@ -24,6 +25,9 @@ Route::get("/hola",function(){
     return "Hola mundo";
 });
 
+Route::get('/subjects', function () {
+    return view('subjects.index');
+})->name('subjects.index');
 
 Route::resource('subjects', SubjectController::class);
 Route::resource('available-classes', AvailableClassController::class);
@@ -41,6 +45,12 @@ Route::get('/saved-schedules/{savedSchedule}/imprimir', [SavedScheduleController
 Route::resource('audits', AuditController::class)->only(['index']);
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::get('/home', function () {
+        return redirect()->route('dashboard');
+    });
+
     Route::get('/perfil', [ProfileController::class, 'index'])->name('profile.index');
     Route::get('/perfil/editar', [ProfileController::class, 'edit'])->name('profile.edit');
 });
