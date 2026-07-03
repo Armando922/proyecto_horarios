@@ -14,19 +14,15 @@ Route::get('/user', function (Request $request) {
 Route::apiResource('users', UserController::class);
 Route::apiResource('classrooms', ClassroomController::class);
 
-
 Route::get(
     '/saved-schedules/{schedule}/export/pdf',
     [ScheduleExportController::class, 'pdf']
-);
+)->name('saved-schedules.export.pdf');
+
 Route::get(
     '/saved-schedules/{schedule}/export/excel',
     [ScheduleExportController::class, 'excel']
-);
-Route::get(
-    '/saved-schedules/{schedule}/export/excel',
-    [ScheduleExportController::class, 'excel']
-);
+)->name('saved-schedules.export.excel');
 
 Route::get(
     'subjects/{subject}/prerequisites',

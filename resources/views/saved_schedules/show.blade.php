@@ -13,6 +13,12 @@
             <a href="{{ route('saved-schedules.print', $savedSchedule) }}" target="_blank" class="px-4 py-2 text-white font-semibold bg-gray-700 rounded-lg shadow hover:bg-gray-800 transition">
                 Imprimir
             </a>
+            <a href="{{ route('saved-schedules.export.pdf', $savedSchedule) }}" target="_blank" class="px-4 py-2 text-white font-semibold bg-red-700 rounded-lg shadow hover:bg-red-800 transition">
+                Descargar PDF
+            </a>
+            <a href="{{ route('saved-schedules.export.excel', $savedSchedule) }}" class="px-4 py-2 text-white font-semibold bg-green-700 rounded-lg shadow hover:bg-green-800 transition">
+                Descargar Excel
+            </a>
             <a href="{{ route('saved-schedules.index') }}" class="px-4 py-2 text-gray-700 font-semibold bg-gray-200 rounded-lg hover:bg-gray-300 transition">
                 Volver
             </a>
