@@ -16,5 +16,3 @@ class Specialty extends Model
         return $this->hasMany(AvailableClass::class);
     }
 }
-
-

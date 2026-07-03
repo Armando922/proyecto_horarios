@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateSpecialtyRequest extends FormRequest
+class UpdateGroupRequest extends FormRequest
 {
     public function authorize(): bool
     {
@@ -14,7 +14,7 @@ class UpdateSpecialtyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:255', 'unique:specialties,nombre,'.$this->route('specialty')->id],
+            'nombre' => ['required', 'string', 'max:255', 'unique:groups,nombre,' . $this->route('group')->id],
         ];
     }
 }

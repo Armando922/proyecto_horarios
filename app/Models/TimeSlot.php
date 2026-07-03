@@ -16,5 +16,3 @@ class TimeSlot extends Model
         return $this->hasMany(AvailableClass::class);
     }
 }
-
-
