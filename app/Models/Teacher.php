@@ -21,5 +21,3 @@ class Teacher extends Model
         return $this->hasMany(AvailableClass::class);
     }
 }
-
-

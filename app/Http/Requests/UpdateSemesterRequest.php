@@ -14,7 +14,7 @@ class UpdateSemesterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nombre' => ['required', 'string', 'max:255', 'unique:semesters,nombre,' . $this->route('semester')->id],
+            'nombre' => ['required', 'string', 'max:255', 'unique:semesters,nombre,'.$this->route('semester')->id],
         ];
     }
 }
