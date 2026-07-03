@@ -16,5 +16,3 @@ class Semester extends Model
         return $this->hasMany(AvailableClass::class);
     }
 }
-
-

@@ -11,8 +11,6 @@ use App\Models\Subject;
 use App\Models\Teacher;
 use App\Models\TimeSlot;
 
-
-
 // Esta es la pantalla de resumen: cuenta cuántos hay de cada cosa
 // especialidades, semestres, profesores, y muestra un par de
 // números extra de ocupación (cuántas aulas/profesores tienen clases
