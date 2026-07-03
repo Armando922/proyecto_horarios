@@ -1,20 +1,15 @@
-<?php
+protected $appends = ['dia_nombre'];
 
-namespace App\Models;
-
-use Illuminate\Database\Eloquent\Model;
-
-class SavedSchedule extends Model
+public function getDiaNombreAttribute()
 {
-    protected $fillable = ['user_id', 'nombre_horario', 'gestion'];
-
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
-
-    public function availableClasses()
-    {
-        return $this->belongsToMany(AvailableClass::class, 'class_selections');
-    }
+    return match ((int) $this->day_of_week) {
+        1 => 'Lunes',
+        2 => 'Martes',
+        3 => 'Miércoles',
+        4 => 'Jueves',
+        5 => 'Viernes',
+        6 => 'Sábado',
+        7 => 'Domingo',
+        default => '',
+    };
 }
