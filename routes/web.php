@@ -10,7 +10,6 @@ use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeSlotController;
-use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 
