@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Classroom;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ClassroomController extends Controller
 {
@@ -21,7 +22,7 @@ class ClassroomController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'codigo' => 'required|string|max:255|unique:classrooms,codigo',
+            'codigo' => 'required|string|max:30|unique:classrooms,codigo',
         ]);
 
         $classroom = Classroom::create($validated);
