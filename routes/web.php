@@ -11,6 +11,7 @@ use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TimeSlotController;
 use App\Http\Controllers\AuditController;
+use App\Http\Controllers\SubjectPrerequisiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -29,6 +30,17 @@ Route::get('/subjects', function () {
 })->name('subjects.index');
 
 Route::resource('subjects', SubjectController::class);
+Route::post(
+    'subjects/{subject}/prerequisites',
+    [SubjectPrerequisiteController::class, 'store']
+)->name('subjects.prerequisites.store');
+
+Route::delete(
+    'subjects/{subject}/prerequisites/{prerequisite}',
+    [SubjectPrerequisiteController::class, 'destroy']
+)->name('subjects.prerequisites.destroy');
+
+
 Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);

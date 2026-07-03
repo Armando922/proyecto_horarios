@@ -26,39 +26,37 @@ class SubjectPrerequisiteController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(
-    StoreSubjectPrerequisiteRequest $request,
-    Subject $subject
-    )
+    public function store(StoreSubjectPrerequisiteRequest $request,Subject $subject)
     {
-        // Verificar que la materia no sea prerrequisito de sí misma
         if ($subject->id == $request->prerequisite_subject_id) {
-            return response()->json([
-                'message' => 'Una materia no puede ser prerrequisito de sí misma.'
-            ], 422);
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'prerequisite_subject_id' =>
+                        'Una materia no puede ser prerrequisito de sí misma.'
+                ]);
         }
 
-        // Verificar si la relación ya existe
         $exists = SubjectPrerequisite::where('subject_id', $subject->id)
             ->where('prerequisite_subject_id', $request->prerequisite_subject_id)
             ->exists();
 
         if ($exists) {
-            return response()->json([
-                'message' => 'Este prerrequisito ya está registrado para esta materia.'
-            ], 409);
+            return back()
+                ->withErrors([
+                    'prerequisite_subject_id' =>
+                        'Este prerrequisito ya está registrado.'
+                ]);
         }
 
-        // Crear la relación
-        $subjectPrerequisite = SubjectPrerequisite::create([
+        SubjectPrerequisite::create([
             'subject_id' => $subject->id,
             'prerequisite_subject_id' => $request->prerequisite_subject_id,
         ]);
 
-        return response()->json([
-            'message' => 'Prerrequisito registrado correctamente.',
-            'data' => $subjectPrerequisite
-        ], 201);
+        return redirect()
+            ->route('subjects.show', $subject)
+            ->with('success', 'Prerrequisito agregado correctamente.');
     }
     /**
      * Display the specified resource.
@@ -84,13 +82,11 @@ class SubjectPrerequisiteController extends Controller
         $deleted = $subject->prerequisites()->detach($prerequisite->id);
 
         if ($deleted === 0) {
-            return response()->json([
-                'message' => 'La relación de prerrequisito no existe.'
-            ], 404);
+            return back()->with('error', 'La relación no existe.');
         }
 
-        return response()->json([
-            'message' => 'Prerrequisito eliminado correctamente.'
-        ], 200);
+        return redirect()
+            ->route('subjects.show', $subject)
+            ->with('success', 'Prerrequisito eliminado correctamente.');
     }
 }
