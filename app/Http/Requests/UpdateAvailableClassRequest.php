@@ -54,7 +54,7 @@ class UpdateAvailableClassRequest extends FormRequest
         $exists = AvailableClass::where('teacher_id', $teacherId)
             ->where('time_slot_id', $timeSlotId)
             ->where('semester_id', $semesterId)
-            ->when($excludeId, fn($query, $id) => $query->where('id', '!=', $id))
+            ->when($excludeId, fn ($query, $id) => $query->where('id', '!=', $id))
             ->exists();
 
         if ($exists) {
@@ -70,7 +70,7 @@ class UpdateAvailableClassRequest extends FormRequest
         $exists = AvailableClass::where('classroom_id', $classroomId)
             ->where('time_slot_id', $timeSlotId)
             ->where('semester_id', $semesterId)
-            ->when($excludeId, fn($query, $id) => $query->where('id', '!=', $id))
+            ->when($excludeId, fn ($query, $id) => $query->where('id', '!=', $id))
             ->exists();
 
         if ($exists) {
@@ -86,7 +86,7 @@ class UpdateAvailableClassRequest extends FormRequest
         $exists = AvailableClass::where('group_id', $groupId)
             ->where('time_slot_id', $timeSlotId)
             ->where('semester_id', $semesterId)
-            ->when($excludeId, fn($query, $id) => $query->where('id', '!=', $id))
+            ->when($excludeId, fn ($query, $id) => $query->where('id', '!=', $id))
             ->exists();
 
         if ($exists) {

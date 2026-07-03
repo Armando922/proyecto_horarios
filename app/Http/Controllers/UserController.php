@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Audit;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class UserController extends Controller
@@ -31,6 +33,14 @@ class UserController extends Controller
 
         $user = User::create($validated);
 
+        Audit::create([
+            'user_id' => Auth::id(),
+            'modulo' => 'Usuarios',
+            'accion' => 'CREATE',
+            'descripcion' => 'Se creó el usuario: ' . $user->name . ' ' . $user->lastname,
+            'ip' => $request->ip(),
+        ]);
+
         return response()->json($user, 201);
     }
 
@@ -50,12 +60,27 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'sometimes|required|string|max:255',
             'lastname' => 'nullable|string|max:255',
-            'email' => ['sometimes', 'required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'email' => [
+                'sometimes',
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id)
+            ],
             'password' => 'sometimes|required|string|min:8|regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/',
             'rol' => ['sometimes', 'required', 'string', Rule::in(['admin', 'estudiante'])],
         ]);
 
         $user->update($validated);
+
+        Audit::create([
+            'user_id' => Auth::id(),
+            'modulo' => 'Usuarios',
+            'accion' => 'UPDATE',
+            'descripcion' => 'Se actualizó el usuario: ' . $user->name . ' ' . $user->lastname,
+            'ip' => $request->ip(),
+        ]);
 
         return response()->json($user);
     }
@@ -65,7 +90,17 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        $nombre = $user->name . ' ' . $user->lastname;
+
         $user->delete();
+
+        Audit::create([
+            'user_id' => Auth::id(),
+            'modulo' => 'Usuarios',
+            'accion' => 'DELETE',
+            'descripcion' => 'Se eliminó el usuario: ' . $nombre,
+            'ip' => request()->ip(),
+        ]);
 
         return response()->json(null, 204);
     }

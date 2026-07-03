@@ -13,8 +13,8 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('/materias') }}"
-               class="block px-3 py-1.5 rounded-lg transition {{ request()->is('materias*') ? 'bg-white/15 font-semibold' : 'hover:bg-white/10' }}">
+            <a href="{{ route('subjects.index') }}"
+               class="block px-3 py-1.5 rounded-lg transition {{ request()->routeIs('subjects.*') ? 'bg-white/15 font-semibold' : 'hover:bg-white/10' }}">
                 Materias
             </a>
         </li>

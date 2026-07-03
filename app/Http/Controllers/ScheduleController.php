@@ -13,7 +13,6 @@ use Illuminate\Http\Request;
 // tabla tipo calendario (días en columnas, horas en filas)
 // es para ver y filtrar.
 
-
 class ScheduleController extends Controller
 {
     public function index(Request $request)
@@ -26,7 +25,7 @@ class ScheduleController extends Controller
 
         $grid = $this->buildGrid($availableClasses);
 
-      // Esto es para llenar los <select> de los filtros.
+        // Esto es para llenar los <select> de los filtros.
         $specialties = Specialty::all();
         $semesters = Semester::all();
         $teachers = Teacher::all();
@@ -47,7 +46,6 @@ class ScheduleController extends Controller
 
         return view('schedule.print', compact('grid'));
     }
-
 
     // Si en la URL viene algún filtro (especialidad, semestre, profesor, grupo),
     // lo aplica. Si no viene nada, muestra todo sin filtrar.
