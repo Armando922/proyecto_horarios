@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AvailableClassController;
 use App\Http\Controllers\ClassroomWebController;
 use App\Http\Controllers\DashboardController;
@@ -12,15 +13,11 @@ use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TimeSlotController;
-use App\Http\Controllers\AuditController;
-use App\Http\Controllers\SubjectPrerequisiteController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
-
-
 
 Route::get('/subjects', function () {
     return view('subjects.index');
