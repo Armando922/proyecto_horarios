@@ -64,7 +64,7 @@ class ScheduleExport implements
 
                 'Semestre' => $class->semester->nombre,
 
-                'Especialidad' => $class->specialty->nombre,
+                'Especialidad' => $class->specialty?->nombre ?? 'N/A',
 
                 'Día' => $dias[$class->timeSlot->dia_semana],
 
