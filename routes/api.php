@@ -23,7 +23,7 @@ Route::get(
 Route::get(
     '/saved-schedules/{schedule}/export/excel',
     [ScheduleExportController::class, 'excel']
-);
+)->name('saved-schedules.export.excel');
 
 Route::get(
     'subjects/{subject}/prerequisites',

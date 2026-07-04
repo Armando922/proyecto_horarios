@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuditController;
 use App\Http\Controllers\AvailableClassController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\GroupController;
@@ -9,8 +10,8 @@ use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\SemesterController;
 use App\Http\Controllers\SpecialtyController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TimeSlotController;
-use App\Http\Controllers\AuditController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,6 +20,18 @@ Route::get('/', function () {
 
 // Resuelto: Se eliminó el closure duplicado y se usa el resource
 Route::resource('subjects', SubjectController::class);
+Route::post(
+    'subjects/{subject}/prerequisites',
+    [SubjectPrerequisiteController::class, 'store']
+)->name('subjects.prerequisites.store');
+
+Route::delete(
+    'subjects/{subject}/prerequisites/{prerequisite}',
+    [SubjectPrerequisiteController::class, 'destroy']
+)->name('subjects.prerequisites.destroy');
+
+
+Route::resource('teachers', TeacherController::class)->only(['index', 'create', 'store', 'destroy']);
 Route::resource('available-classes', AvailableClassController::class);
 Route::resource('semesters', SemesterController::class);
 Route::resource('specialties', SpecialtyController::class);
