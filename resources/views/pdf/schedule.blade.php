@@ -126,7 +126,7 @@ $dias = [
 
             <td>{{ $class->semester->nombre }}</td>
 
-            <td>{{ $class->specialty->nombre }}</td>
+            <td>{{ $class->specialty?->nombre ?? 'N/A' }}</td>
 
             <td>{{ $dias[$class->timeSlot->dia_semana] }}</td>
 

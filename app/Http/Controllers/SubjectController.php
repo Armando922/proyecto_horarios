@@ -30,7 +30,20 @@ class SubjectController extends Controller
 
     public function show(Subject $subject)
     {
-        return view('subjects.show', compact('subject'));
+        $subject->load('prerequisites');
+
+        $availableSubjects = Subject::where('id', '!=', $subject->id)
+            ->whereNotIn(
+                'id',
+                $subject->prerequisites->pluck('id')
+            )
+            ->orderBy('nombre')
+            ->get();
+
+        return view('subjects.show', compact(
+            'subject',
+            'availableSubjects'
+        ));
     }
 
     public function edit(Subject $subject)
